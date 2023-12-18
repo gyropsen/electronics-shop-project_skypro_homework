@@ -18,3 +18,24 @@ def test_calculate_total_price(get_items):
 def test_apply_discount(get_items):
     assert 10000 * Item.pay_rate == get_items[0].price
     assert 20000 * Item.pay_rate == get_items[1].price
+
+
+def test_item_name(get_items):
+    assert get_items[0].name == "Смартфон"
+
+    get_items[0].name = "Ноутбук"
+    assert get_items[0].name == "Ноутбук"
+
+    get_items[0].name = "Суперсмартфон"
+    assert get_items[0].name == "Ноутбук"
+
+
+def test_instantiate_from_csv(get_items):
+    Item.instantiate_from_csv('../src/items.csv')
+    assert len(Item.all) == 13
+
+
+def test_string_to_number(get_items):
+    assert Item.string_to_number('5') == 5
+    assert Item.string_to_number('5.0') == 5
+    assert Item.string_to_number('5.5') == 5

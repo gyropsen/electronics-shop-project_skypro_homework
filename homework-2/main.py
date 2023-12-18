@@ -11,8 +11,8 @@ if __name__ == '__main__':
     item.name = 'СуперСмартфон'
     # Exception: Длина наименования товара превышает 10 символов.
 
-    Item.instantiate_from_csv('src/items.csv')  # создание объектов из данных файла
-    assert len(Item.all) == 5  # в файле 5 записей с данными по товарам
+    Item.instantiate_from_csv('../src/items.csv')  # создание объектов из данных файла
+    assert len(Item.all) == 6  # в файле 5 записей с данными по товарам + 1 item, который в мейне инициализировали
 
     item1 = Item.all[0]
     assert item1.name == 'Смартфон'
