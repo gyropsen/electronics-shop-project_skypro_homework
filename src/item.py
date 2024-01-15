@@ -28,6 +28,10 @@ class Item:
     def __str__(self):
         return f"{self._name}"
 
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+
     @property
     def name(self):
         """
