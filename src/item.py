@@ -67,6 +67,7 @@ class Item:
         """
         Создает экземпляры класса из файла
         """
+        cls.all.clear()
         with open(path, "r", newline="") as csvfile:
             reader = csv.DictReader(csvfile, delimiter=",")
             for row in reader:

@@ -39,7 +39,7 @@ def test_item_name(get_items):
 
 def test_instantiate_from_csv(get_items):
     Item.instantiate_from_csv('../src/items.csv')
-    assert len(Item.all) == 13
+    assert len(Item.all) == 5
 
 
 def test_string_to_number(get_items):
