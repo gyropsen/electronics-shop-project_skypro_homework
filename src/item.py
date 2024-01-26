@@ -63,15 +63,22 @@ class Item:
         self.price *= self.pay_rate
 
     @classmethod
-    def instantiate_from_csv(cls, path):
+    def instantiate_from_csv(cls, path="../src/items.csv"):
         """
         Создает экземпляры класса из файла
         """
-        cls.all.clear()
-        with open(path, "r", newline="") as csvfile:
-            reader = csv.DictReader(csvfile, delimiter=",")
-            for row in reader:
-                cls(str(row['name']), int(row['price']), int(row['quantity']))
+        try:
+            cls.all.clear()
+            with open(path, "r", newline="") as csvfile:
+                reader = csv.DictReader(csvfile, delimiter=",")
+                for row in reader:
+                    cls(str(row['name']), int(row['price']), int(row['quantity']))
+
+        except FileNotFoundError:
+            raise FileNotFoundError("Отсутствует файл item.csv")
+        else:
+            if len(cls.all) != 5:
+                raise InstantiateCSVError("Файл item.csv поврежден")
 
     @staticmethod
     def string_to_number(number_string):
@@ -81,3 +88,7 @@ class Item:
         for number in number_string:
             if number.isdigit():
                 return int(number)
+
+
+class InstantiateCSVError(Exception):
+    pass
